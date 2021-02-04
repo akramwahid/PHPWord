@@ -82,7 +82,8 @@ class Html
         $dom = new \DOMDocument();
         $dom->preserveWhiteSpace = $preserveWhiteSpace;
         //$dom->loadHTML($html, LIBXML_NOWARNING);
-        $dom->loadHTML(mb_convert_encoding($html, 'HTML-ENTITIES', 'UTF-8'), LIBXML_NOWARNING);
+        //$dom->loadHTML(mb_convert_encoding($html, 'HTML-ENTITIES', 'UTF-8'), LIBXML_NOWARNING);
+        $dom->loadHTML('<meta http-equiv="Content-Type" content="text/html; charset=utf-8">' . $html, LIBXML_NOWARNING);
         
         self::$xpath = new \DOMXPath($dom);
         $node = $dom->getElementsByTagName('body');
