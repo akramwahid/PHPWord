@@ -79,6 +79,14 @@ class TOC extends AbstractElement
 
         $xmlWriter->startElement('w:p');
 
+        $language = $element->getPhpWord()->getSettings()->getThemeFontLang();
+        if ($language != null && $language->getBidirectional()) {
+            $xmlWriter->startElement('w:pPr');
+            $xmlWriter->startElement('w:bidi');
+            $xmlWriter->endElement();
+            $xmlWriter->endElement();
+        }
+
         // Write style and field mark
         $this->writeStyle($xmlWriter, $element, $indent);
         if ($writeFieldMark) {
